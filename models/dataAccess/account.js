@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
+// class Account {
+//     constructor(AccountId, Password, Phone, Email, Name, Avatar, Birthday, Gender, CreatedDate) {
+//         this.AccountId = AccountId;
+//         this.Password = Password;
+//         this.Phone = Phone;
+//         this.Email = Email;
+//         this.Name = Name;
+//         this.Avatar = Avatar;
+//         this.Birthday = Birthday;
+//         this.Gender = Gender;
+//         this.CreatedDate = CreatedDate;
+//     }
+// }
 
-mongoose.connect(uriAccount, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((rs) => {
-        console.log('Connected successfully to server');
-    })
-    .catch((error) => {
-        console.log('Error connecting to database');
-    });
-
-module.exports = {
-    mongoose
-}
+// exports.Account = Account;

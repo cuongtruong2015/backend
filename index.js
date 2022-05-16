@@ -8,7 +8,7 @@ const PORT = process.env.PORT;
 const cors = require('cors');
 const session = require('express-session');
 const cookieParse = require('cookie-parser')
-
+require('./models/connection').initPool(1);
 app.use(express.json());
 app.use(cookieParse())
 
@@ -23,10 +23,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(cors(corsOptions));
-const serverHttp = app.listen(8080);
+// app.use(cors(corsOptions));
+// const serverHttp = app.listen(8080);
 
-const server = app.listen(8000);
+const server = app.listen(8188);
 
 route(app);
 
