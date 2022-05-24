@@ -26,11 +26,10 @@ app.use(session({
 // app.use(cors(corsOptions));
 // const serverHttp = app.listen(8080);
 
-const server = app.listen(8188);
+const server = app.listen(PORT);
 
 route(app);
 
 console.log(`Server is running on port ${PORT}`);
-
 // socket(server);
 // socket(serverHttp);

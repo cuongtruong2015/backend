@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  myapp:
+    image: myapp:1.0
+    ports:
+      - 7000:7000
+    environment:
+      - PORT=7000
+      - DTB_Account=admin
+      - PASS=password
+      - DB_Domain=localhost
+      - DB_PORT=27017
+      - DB_CONNECT_URI=mongodb://admin:password@mongodb:27017
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017:27017"
+    container_name: mongodb
+    volumes:
+      - db-data:/var/lib/mysql/data
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8081"
+    restart: unless-stopped
+
+networks:
+  mongo-network:
+    driver: bridge

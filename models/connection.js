@@ -6,7 +6,11 @@ const { MongoClient } = require('mongodb');
 // // const uriConnect = 'mongodb-assert.hthqk.mongodb.net'
 // const uriConnect = 'mongodb-test.hthqk.mongodb.net'
 // const nameDB = 'Account'
-const url = `mongodb+srv://${process.env.DTB_Account}:${process.env.PWD}@${process.env.URI_CONNECTION}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// const url = `mongodb+srv://${process.env.DTB_Account}:${process.env.PASS}@${process.env.URI_CONNECTION}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+
+// const url = `mongodb://${process.env.DTB_Account}:${process.env.PASS}@${process.env.DB_Domain}:${process.env.DB_PORT}`;
+const url = `${process.env.DB_CONNECT_URI}`
+console.log(url)
 var option = {
 };
 function MongoPool() { }

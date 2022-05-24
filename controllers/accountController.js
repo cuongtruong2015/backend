@@ -1,23 +1,35 @@
 var MongoPool = require("../models/connection");
 
-async function login(req, res) {
+async function createAccount(req, res) {
     MongoPool.getInstance(async function (client) {
         // Query your MongoDB database.
         // const data = await client.db('Account').collection('accounts').find().toArray().then();
 
-        const Diary = {
-            date: new Date(),
-            content: 'this is an important date',
-            icon: '🥺🥺'
+        const Account = {
+            Name: 'Nguyen Van A',
+            CreatedDate: new Date(),
         }
-        await client.db('Diary').collection('Diary').insertOne(Diary, function (err, res) {
+        await client.db('myapp').collection('account').insertOne(Account, function (err, rs) {
             if (err) throw err;
             console.log("1 document inserted");
+            res.send(rs);
         }
         )
         // res.send(data)
     });
 }
+
+
+async function getAccount(req, res) {
+    MongoPool.getInstance(async function (client) {
+        // Query your MongoDB database.
+        // const data = await client.db('Account').collection('accounts').find().toArray().then();
+        await client.db('myapp').collection('account').find().toArray().then(data =>
+            res.send(data)
+        )
+    });
+}
 module.exports = {
-    login
+    createAccount,
+    getAccount
 }
